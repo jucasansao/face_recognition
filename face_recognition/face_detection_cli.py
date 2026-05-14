@@ -46,7 +46,7 @@ def process_images_in_process_pool(images_to_check, number_of_cpus, model, upsam
 @click.command()
 @click.argument("image_to_check")
 @click.option("--cpus", default=1, help='Number of CPU cores to use in parallel. -1 means "use all in system".')
-@click.option("--model", default="hog", help='Face detection model to use. Options are "hog" (default, CPU-friendly) or "cnn" (more accurate, GPU-accelerated).')
+@click.option("--model", default="hog", help='Face detection model: "hog" (default, CPU-friendly) or "cnn" (more accurate, GPU-accelerated).')
 @click.option("--upsample", default=0, help="How many times to upsample the image looking for faces. Higher numbers find smaller faces.")
 def main(image_to_check, cpus, model, upsample):
     if os.path.isdir(image_to_check):
