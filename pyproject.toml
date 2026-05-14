@@ -27,9 +27,9 @@ classifiers = [
 ]
 requires-python = ">=3.9"
 dependencies = [
-    "face_recognition_models>=0.3.0",
+    "face-recognition-models-ng @ git+https://github.com/jucasansao/face_recognition_models.git",
     "click>=8.0",
-    "dlib>=19.7",
+    "dlib>=19.7,<20",
     "numpy>=1.24",
     "Pillow>=9.0",
 ]
