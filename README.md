@@ -1,6 +1,10 @@
-# Face Recognition
+# face-recognition-ng
 
-_You can also read a translated version of this file [in Chinese 简体中文版](https://github.com/ageitgey/face_recognition/blob/master/README_Simplified_Chinese.md) or [in Korean 한국어](https://github.com/ageitgey/face_recognition/blob/master/README_Korean.md) or [in Japanese 日本語](https://github.com/m-i-k-i/face_recognition/blob/master/README_Japanese.md)._
+> **Maintained fork** of [ageitgey/face_recognition](https://github.com/ageitgey/face_recognition), which appears to be no longer actively maintained.
+> The public API is fully compatible — no changes to your existing code are required.
+> See [Changes from upstream](#changes-from-upstream) for what's different.
+
+_You can also read a translated version of the original README [in Chinese 简体中文版](https://github.com/ageitgey/face_recognition/blob/master/README_Simplified_Chinese.md) or [in Korean 한국어](https://github.com/ageitgey/face_recognition/blob/master/README_Korean.md) or [in Japanese 日本語](https://github.com/m-i-k-i/face_recognition/blob/master/README_Japanese.md)._
 
 Recognize and manipulate faces from Python or from the command line with
 the world's simplest face recognition library.
@@ -13,7 +17,7 @@ This also provides a simple `face_recognition` command line tool that lets
 you do face recognition on a folder of images from the command line!
 
 
-[![PyPI](https://img.shields.io/pypi/v/face_recognition.svg)](https://pypi.python.org/pypi/face_recognition)
+[![PyPI](https://img.shields.io/pypi/v/face-recognition-ng.svg)](https://pypi.python.org/pypi/face-recognition-ng)
 [![Build Status](https://github.com/ageitgey/face_recognition/workflows/CI/badge.svg?branch=master&event=push)](https://github.com/ageitgey/face_recognition/actions?query=workflow%3ACI)
 [![Documentation Status](https://readthedocs.org/projects/face-recognition/badge/?version=latest)](http://face-recognition.readthedocs.io/en/latest/?badge=latest)
 
@@ -79,7 +83,7 @@ User-contributed shared Jupyter notebook demo (not officially supported): [![Dee
 
 ### Requirements
 
-  * Python 3.3+ or Python 2.7
+  * Python 3.9+
   * macOS or Linux (Windows not officially supported, but might work)
 
 ### Installation Options:
@@ -94,10 +98,10 @@ Then, make sure you have cmake installed:
  
 ```brew install cmake```
 
-Finally, install this module from pypi using `pip3` (or `pip2` for Python 2):
+Finally, install this package from PyPI:
 
 ```bash
-pip3 install face_recognition
+pip install face-recognition-ng
 ```
 
 Alternatively, you can try this library with [Docker](https://www.docker.com/), see [this section](#deployment).
@@ -237,7 +241,7 @@ multiple CPU cores. For example, if your system has 4 CPU cores, you can
 process about 4 times as many images in the same amount of time by using
 all your CPU cores in parallel.
 
-If you are using Python 3.4 or newer, pass in a `--cpus <number_of_cpu_cores_to_use>` parameter:
+Pass in a `--cpus <number_of_cpu_cores_to_use>` parameter:
 
 ```bash
 $ face_recognition --cpus 4 ./pictures_of_people_i_know/ ./unknown_pictures/
@@ -401,6 +405,20 @@ Linux users with a GPU (drivers >= 384.81) and [Nvidia-Docker](https://github.co
 ## Having problems?
 
 If you run into problems, please read the [Common Errors](https://github.com/ageitgey/face_recognition/wiki/Common-Errors) section of the wiki before filing a github issue.
+
+## Changes from upstream
+
+This fork picks up where the original `face_recognition` library left off. The public Python API
+and CLI are fully compatible — no changes to existing code are required.
+
+| Area | Change |
+|---|---|
+| **Packaging** | Migrated to PEP 517/518/621 `pyproject.toml`. `setup.py` and `MANIFEST.in` removed. Published on PyPI as `face-recognition-ng`. |
+| **Python support** | Dropped Python 2 and Python < 3.9. Targets Python 3.9–3.14. |
+| **Dependencies** | Updated minimums: `click ≥ 8`, `numpy ≥ 1.24`, `Pillow ≥ 9`. |
+| **Source** | Removed `__future__` imports, coding headers, dead Python 2 guards. F-strings and idiomatic Python 3 throughout. |
+| **CI** | Updated GitHub Actions to modern versions; matrix covers 3.9–3.14. Publish workflow added for PyPI via Trusted Publishers. |
+| **Modernisation assistance** | Packaging and Python 3 modernisation in this fork was assisted by [Claude Code](https://claude.ai/code) (Anthropic). |
 
 ## Thanks
 

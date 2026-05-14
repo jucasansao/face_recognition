@@ -1,2 +1,56 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "face-recognition-ng"
+version = "1.4.0"
+description = "Recognize faces from Python or from the command line"
+readme = "README.rst"
+license = { text = "MIT" }
+authors = [
+    { name = "Adam Geitgey", email = "ageitgey@gmail.com" },
+]
+keywords = ["face_recognition"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "face_recognition_models>=0.3.0",
+    "click>=8.0",
+    "dlib>=19.7",
+    "numpy>=1.24",
+    "Pillow>=9.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/ageitgey/face_recognition"
+
+[project.scripts]
+face_recognition = "face_recognition.face_recognition_cli:main"
+face_detection = "face_recognition.face_detection_cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["face_recognition*"]
+
+[tool.setuptools.package-data]
+face_recognition = ["models/*.dat"]
+
+# ---------------------------------------------------------------------------
+# Linting
+# ---------------------------------------------------------------------------
+# Note: flake8 does not yet read [tool.flake8] natively; keep its config in
+# setup.cfg until the project migrates to ruff or another pyproject-native
+# linter.

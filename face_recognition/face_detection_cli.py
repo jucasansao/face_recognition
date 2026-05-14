@@ -1,17 +1,15 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 import click
+import itertools
+import multiprocessing
 import os
 import re
+
 import face_recognition.api as face_recognition
-import multiprocessing
-import sys
-import itertools
 
 
 def print_result(filename, location):
     top, right, bottom, left = location
-    print("{},{},{},{},{}".format(filename, top, right, bottom, left))
+    print(f"{filename},{top},{right},{bottom},{left}")
 
 
 def test_image(image_to_check, model, upsample):
@@ -27,10 +25,7 @@ def image_files_in_folder(folder):
 
 
 def process_images_in_process_pool(images_to_check, number_of_cpus, model, upsample):
-    if number_of_cpus == -1:
-        processes = None
-    else:
-        processes = number_of_cpus
+    processes = None if number_of_cpus == -1 else number_of_cpus
 
     # macOS will crash due to a bug in libdispatch if you don't use 'forkserver'
     context = multiprocessing
@@ -49,19 +44,15 @@ def process_images_in_process_pool(images_to_check, number_of_cpus, model, upsam
 
 
 @click.command()
-@click.argument('image_to_check')
-@click.option('--cpus', default=1, help='number of CPU cores to use in parallel. -1 means "use all in system"')
-@click.option('--model', default="hog", help='Which face detection model to use. Options are "hog" or "cnn".')
-@click.option('--upsample', default=0, help='How many times to upsample the image looking for faces. Higher numbers find smaller faces.')
+@click.argument("image_to_check")
+@click.option("--cpus", default=1, help='Number of CPU cores to use in parallel. -1 means "use all in system".')
+@click.option("--model", default="hog", help='Face detection model to use. Options are "hog" (default, CPU-friendly) or "cnn" (more accurate, GPU-accelerated).')
+@click.option("--upsample", default=0, help="How many times to upsample the image looking for faces. Higher numbers find smaller faces.")
 def main(image_to_check, cpus, model, upsample):
-    # Multi-core processing only supported on Python 3.4 or greater
-    if (sys.version_info < (3, 4)) and cpus != 1:
-        click.echo("WARNING: Multi-processing support requires Python 3.4 or greater. Falling back to single-threaded processing!")
-        cpus = 1
-
     if os.path.isdir(image_to_check):
         if cpus == 1:
-            [test_image(image_file, model, upsample) for image_file in image_files_in_folder(image_to_check)]
+            for image_file in image_files_in_folder(image_to_check):
+                test_image(image_file, model, upsample)
         else:
             process_images_in_process_pool(image_files_in_folder(image_to_check), cpus, model, upsample)
     else:

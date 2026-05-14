@@ -1,3 +1,12 @@
+face-recognition-ng
+===================
+
+.. note::
+
+   **This is a maintained fork of** `ageitgey/face_recognition <https://github.com/ageitgey/face_recognition>`__,
+   which appears to be no longer actively maintained. The public API is identical — no changes
+   to your existing code are required. See the `Changes from upstream`_ section below for details.
+
 Face Recognition
 ================
 
@@ -90,7 +99,7 @@ Installation
 Requirements
 ^^^^^^^^^^^^
 
--  Python 3.3+ or Python 2.7
+-  Python 3.9+
 -  macOS or Linux (Windows not officially supported, but might work)
 
 Installing on Mac or Linux
@@ -101,12 +110,11 @@ First, make sure you have dlib already installed with Python bindings:
 -  `How to install dlib from source on macOS or
    Ubuntu <https://gist.github.com/ageitgey/629d75c1baac34dfa5ca2a1928a7aeaf>`__
 
-Then, install this module from pypi using ``pip3`` (or ``pip2`` for
-Python 2):
+Then, install this package from PyPI:
 
 .. code:: bash
 
-    pip3 install face_recognition
+    pip install face-recognition-ng
 
 | If you are having trouble with installation, you can also try out a
 | `pre-configured
@@ -231,8 +239,7 @@ Speeding up Face Recognition
   using
 | all your CPU cores in parallel.
 
-If you are using Python 3.4 or newer, pass in a
-``--cpus <number_of_cpu_cores_to_use>`` parameter:
+Pass in a ``--cpus <number_of_cpu_cores_to_use>`` parameter:
 
 .. code:: bash
 
@@ -431,13 +438,6 @@ Solution: Your webcam probably isn't set up correctly with OpenCV. `Look
 here for
 more <https://github.com/ageitgey/face_recognition/issues/21#issuecomment-287779524>`__.
 
-Issue: ``MemoryError`` when running ``pip2 install face_recognition``
-
-| Solution: The face\_recognition\_models file is too big for your
-  available pip cache memory. Instead,
-| try ``pip2 --no-cache-dir install face_recognition`` to avoid the
-  issue.
-
 Issue:
 ``AttributeError: 'module' object has no attribute 'face_recognition_model_v1'``
 
@@ -454,6 +454,26 @@ Issue: ``TypeError: imread() got an unexpected keyword argument 'mode'``
 
 Solution: The version of ``scipy`` you have installed is too old. You
 need version 0.17 or newer. Upgrade ``scipy``.
+
+Changes from upstream
+---------------------
+
+This fork picks up where the original ``face_recognition`` library left off. The public
+Python API and CLI are fully compatible — no changes to existing code are required.
+
+What changed:
+
+-  **Packaging**: Migrated to a fully PEP 517/518/621-compliant ``pyproject.toml``.
+   ``setup.py`` and ``MANIFEST.in`` removed. Published on PyPI as ``face-recognition-ng``.
+-  **Python support**: Dropped Python 2 and Python < 3.9. Targets Python 3.9–3.14.
+-  **Dependencies**: Updated minimum versions for ``click`` (≥ 8), ``numpy`` (≥ 1.24),
+   and ``Pillow`` (≥ 9).
+-  **Source cleanup**: Removed ``from __future__`` imports, ``# -*- coding: utf-8 -*-``
+   headers, dead Python 2 version guards, and replaced ``quit()`` with a proper
+   ``ImportError``. F-strings and idiomatic Python 3 throughout.
+-  **CI**: Updated GitHub Actions to modern action versions; matrix now covers 3.9–3.14.
+-  **Modernisation assistance**: Packaging and Python 3 modernisation in this fork was
+   assisted by `Claude Code <https://claude.ai/code>`__ (Anthropic).
 
 Thanks
 ------
@@ -476,10 +496,10 @@ Thanks
    project template
    for making Python project packaging way more tolerable.
 
-.. |PyPI| image:: https://img.shields.io/pypi/v/face_recognition.svg
-   :target: https://pypi.python.org/pypi/face_recognition
-.. |Build Status| image:: https://travis-ci.org/ageitgey/face_recognition.svg?branch=master
-   :target: https://travis-ci.org/ageitgey/face_recognition
+.. |PyPI| image:: https://img.shields.io/pypi/v/face-recognition-ng.svg
+   :target: https://pypi.python.org/pypi/face-recognition-ng
+.. |Build Status| image:: https://github.com/ageitgey/face_recognition/workflows/CI/badge.svg
+   :target: https://github.com/ageitgey/face_recognition/actions
 .. |Documentation Status| image:: https://readthedocs.org/projects/face-recognition/badge/?version=latest
    :target: http://face-recognition.readthedocs.io/en/latest/?badge=latest
 .. |image3| image:: https://cloud.githubusercontent.com/assets/896692/23625227/42c65360-025d-11e7-94ea-b12f28cb34b4.png
