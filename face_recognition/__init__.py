@@ -1,6 +1,6 @@
 __author__ = "Adam Geitgey"
 __email__ = "ageitgey@gmail.com"
-__version__ = "1.4.0"
+__version__ = "1.4.1"
 
 from .api import (  # noqa: F401
     load_image_file,
