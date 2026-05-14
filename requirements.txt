@@ -1,7 +1,8 @@
 # Runtime dependencies — kept in sync with [project.dependencies] in pyproject.toml.
 # Install the package itself with:  pip install .
-face-recognition-models-ng @ git+https://github.com/jucasansao/face_recognition_models.git
+face_recognition_models>=0.3.0
+setuptools
 click>=8.0
-dlib>=19.7
+dlib>=19.7,<20
 numpy>=1.24
 Pillow>=9.0
