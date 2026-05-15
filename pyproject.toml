@@ -12,7 +12,7 @@ authors = [
     { name = "Adam Geitgey", email = "ageitgey@gmail.com" },
 ]
 maintainers = [
-    { name = "Pedro Sousa", email = "pedro.sousa@alviere.com" },
+    { name = "Pedro Sousa", email = "pedrosonsosousa@gmail.com" },
 ]
 keywords = ["face_recognition"]
 classifiers = [
