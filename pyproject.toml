@@ -11,6 +11,9 @@ license = { text = "MIT" }
 authors = [
     { name = "Adam Geitgey", email = "ageitgey@gmail.com" },
 ]
+maintainers = [
+    { name = "Pedro Sousa", email = "pedro.sousa@alviere.com" },
+]
 keywords = ["face_recognition"]
 classifiers = [
     "Development Status :: 4 - Beta",
